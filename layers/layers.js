@@ -11,35 +11,34 @@ var wms_layers = [];
                 url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
             })
         });
-var format_buildings_1 = new ol.format.GeoJSON();
-var features_buildings_1 = format_buildings_1.readFeatures(json_buildings_1, 
+var lyr_FootpathTrailLandMap_withSkew_1 = new ol.layer.Image({
+        opacity: 1,
+        
+    title: 'Footpath Trail Land Map_withSkew<br />' ,
+        
+        
+        source: new ol.source.ImageStatic({
+            url: "./layers/FootpathTrailLandMap_withSkew_1.png",
+            attributions: ' ',
+            projection: 'EPSG:3857',
+            alwaysInRange: true,
+            imageExtent: [-13595178.903753, 4474024.587848, -13595073.741147, 4474094.819158]
+        })
+    });
+var format_bulidingsskewed_2 = new ol.format.GeoJSON();
+var features_bulidingsskewed_2 = format_bulidingsskewed_2.readFeatures(json_bulidingsskewed_2, 
             {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
-var jsonSource_buildings_1 = new ol.source.Vector({
+var jsonSource_bulidingsskewed_2 = new ol.source.Vector({
     attributions: ' ',
 });
-jsonSource_buildings_1.addFeatures(features_buildings_1);
-var lyr_buildings_1 = new ol.layer.Vector({
+jsonSource_bulidingsskewed_2.addFeatures(features_bulidingsskewed_2);
+var lyr_bulidingsskewed_2 = new ol.layer.Vector({
                 declutter: false,
-                source:jsonSource_buildings_1, 
-                style: style_buildings_1,
-                popuplayertitle: 'buildings',
+                source:jsonSource_bulidingsskewed_2, 
+                style: style_bulidingsskewed_2,
+                popuplayertitle: 'bulidings skewed',
                 interactive: true,
-                title: '<img src="styles/legend/buildings_1.png" /> buildings'
-            });
-var format_deck_2 = new ol.format.GeoJSON();
-var features_deck_2 = format_deck_2.readFeatures(json_deck_2, 
-            {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
-var jsonSource_deck_2 = new ol.source.Vector({
-    attributions: ' ',
-});
-jsonSource_deck_2.addFeatures(features_deck_2);
-var lyr_deck_2 = new ol.layer.Vector({
-                declutter: false,
-                source:jsonSource_deck_2, 
-                style: style_deck_2,
-                popuplayertitle: 'deck',
-                interactive: true,
-                title: '<img src="styles/legend/deck_2.png" /> deck'
+                title: '<img src="styles/legend/bulidingsskewed_2.png" /> bulidings skewed'
             });
 var format_plants_3 = new ol.format.GeoJSON();
 var features_plants_3 = format_plants_3.readFeatures(json_plants_3, 
@@ -56,36 +55,15 @@ var lyr_plants_3 = new ol.layer.Vector({
                 interactive: true,
                 title: '<img src="styles/legend/plants_3.png" /> plants'
             });
-var format_pois_4 = new ol.format.GeoJSON();
-var features_pois_4 = format_pois_4.readFeatures(json_pois_4, 
-            {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
-var jsonSource_pois_4 = new ol.source.Vector({
-    attributions: ' ',
-});
-jsonSource_pois_4.addFeatures(features_pois_4);
-var lyr_pois_4 = new ol.layer.Vector({
-                declutter: false,
-                source:jsonSource_pois_4, 
-                style: style_pois_4,
-                popuplayertitle: 'pois',
-                interactive: true,
-                title: '<img src="styles/legend/pois_4.png" /> pois'
-            });
 
-lyr_OpenStreetMap_0.setVisible(true);lyr_buildings_1.setVisible(true);lyr_deck_2.setVisible(true);lyr_plants_3.setVisible(true);lyr_pois_4.setVisible(true);
-var layersList = [lyr_OpenStreetMap_0,lyr_buildings_1,lyr_deck_2,lyr_plants_3,lyr_pois_4];
-lyr_buildings_1.set('fieldAliases', {'fid': 'fid', 'Name': 'Name', });
-lyr_deck_2.set('fieldAliases', {'fid': 'fid', });
+lyr_OpenStreetMap_0.setVisible(true);lyr_FootpathTrailLandMap_withSkew_1.setVisible(true);lyr_bulidingsskewed_2.setVisible(true);lyr_plants_3.setVisible(true);
+var layersList = [lyr_OpenStreetMap_0,lyr_FootpathTrailLandMap_withSkew_1,lyr_bulidingsskewed_2,lyr_plants_3];
+lyr_bulidingsskewed_2.set('fieldAliases', {'fid': 'fid', });
 lyr_plants_3.set('fieldAliases', {'fid': 'fid', 'Species': 'Species', });
-lyr_pois_4.set('fieldAliases', {'fid': 'fid', 'Name': 'Name', });
-lyr_buildings_1.set('fieldImages', {'fid': '', 'Name': '', });
-lyr_deck_2.set('fieldImages', {'fid': 'TextEdit', });
+lyr_bulidingsskewed_2.set('fieldImages', {'fid': '', });
 lyr_plants_3.set('fieldImages', {'fid': 'TextEdit', 'Species': 'TextEdit', });
-lyr_pois_4.set('fieldImages', {'fid': 'TextEdit', 'Name': 'TextEdit', });
-lyr_buildings_1.set('fieldLabels', {'fid': 'no label', 'Name': 'no label', });
-lyr_deck_2.set('fieldLabels', {'fid': 'no label', });
+lyr_bulidingsskewed_2.set('fieldLabels', {'fid': 'no label', });
 lyr_plants_3.set('fieldLabels', {'fid': 'no label', 'Species': 'no label', });
-lyr_pois_4.set('fieldLabels', {'fid': 'no label', 'Name': 'no label', });
-lyr_pois_4.on('precompose', function(evt) {
+lyr_plants_3.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
 });
