@@ -1,7 +1,7 @@
 var size = 0;
 var placement = 'point';
 
-var style_bulidingsskewed_2 = function(feature, resolution){
+var style_plants_2 = function(feature, resolution){
     var context = {
         feature: feature,
         variables: {}
@@ -9,8 +9,8 @@ var style_bulidingsskewed_2 = function(feature, resolution){
     
     var labelText = ""; 
     var value = feature.get("");
-    var labelFont = "10px, sans-serif";
-    var labelFill = "#000000";
+    var labelFont = "13.0px \'Open Sans\', sans-serif";
+    var labelFill = "#323232";
     var bufferColor = "";
     var bufferWidth = 0;
     var textAlign = 'left';
@@ -19,11 +19,12 @@ var style_bulidingsskewed_2 = function(feature, resolution){
     var overflow = false;
     var repeat = 0;
     var placement = 'point';
-    if ("" !== null) {
-        labelText = String("");
+    if (feature.get("Species") !== null) {
+        labelText = String(feature.get("Species"));
     }
     var style = [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(35,35,35,1.0)', lineDash: null, lineCap: 'butt', lineJoin: 'miter', width: 0.988}),fill: new ol.style.Fill({color: 'rgba(232,113,141,1.0)'}),
+        image: new ol.style.Circle({radius: 1.0 + size,
+            displacement: [0, 0],  fill: new ol.style.Fill({color: 'rgba(16,142,0,0.23529411764705882)'})}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement, bufferColor,
                               bufferWidth, textAlign, offsetX, offsetY, overflow, repeat)
